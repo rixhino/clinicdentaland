@@ -3,59 +3,1058 @@
 <head>
     <meta charset="UTF-8">
     <title>Clinic Dentaland</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Clinic Dentaland provides modern dental care, friendly service, and comprehensive treatments for the whole family.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            color-scheme: only light;
+            --ink: #18272f;
+            --muted: #52636b;
+            --accent: #0ea5a3;
+            --accent-dark: #087878;
+            --accent-soft: #dff2f1;
+            --warm: #f2e8dc;
+            --coral: #f48b6a;
+            --sand: #f9f4ee;
+            --shadow: 0 22px 50px rgba(18, 40, 45, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f9fb;
             margin: 0;
-            padding: 0;
-            text-align: center;
+            font-family: "Manrope", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--ink);
+            background-color: var(--sand);
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(14, 165, 163, 0.12), transparent 40%),
+                radial-gradient(circle at 88% 10%, rgba(244, 139, 106, 0.12), transparent 45%),
+                radial-gradient(circle at 20% 90%, rgba(14, 165, 163, 0.08), transparent 50%);
+            line-height: 1.6;
         }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .wrap {
+            width: min(1100px, 100%);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: rise 0.8s ease forwards;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+
         header {
-            background-color: #0a6ebd;
+            position: relative;
+            overflow: hidden;
+            padding: 32px 0 70px;
+            background: linear-gradient(135deg, rgba(14, 165, 163, 0.18), rgba(244, 139, 106, 0.18));
+        }
+
+        header::before,
+        header::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        header::before {
+            width: 380px;
+            height: 380px;
+            top: -180px;
+            right: -120px;
+            background: rgba(14, 165, 163, 0.2);
+        }
+
+        header::after {
+            width: 260px;
+            height: 260px;
+            bottom: -140px;
+            left: -80px;
+            background: rgba(244, 139, 106, 0.2);
+        }
+
+        .topbar {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Fraunces", "Times New Roman", serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: var(--accent);
             color: white;
-            padding: 40px 20px;
+            font-weight: 700;
         }
-        main {
-            padding: 40px 20px;
+
+        .nav {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            font-weight: 600;
+            font-size: 15px;
         }
-        h1 {
-            margin-bottom: 10px;
+
+        .nav a {
+            padding: 6px 10px;
+            border-radius: 999px;
+            transition: background 0.2s ease;
         }
-        p {
+
+        .nav a:hover {
+            background: rgba(14, 165, 163, 0.15);
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(14, 165, 163, 0.2);
+            font-size: 13px;
+        }
+
+        .lang-label {
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .lang-btn {
+            border: 1px solid transparent;
+            background: transparent;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--muted);
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: white;
+            border-color: rgba(14, 165, 163, 0.3);
+            color: var(--ink);
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-dark);
+        }
+
+        .hero h1 {
+            font-family: "Fraunces", "Times New Roman", serif;
+            font-size: clamp(32px, 4vw, 48px);
+            margin: 18px 0 12px;
+            line-height: 1.1;
+        }
+
+        .lead {
+            font-size: 17px;
+            color: var(--muted);
+            margin: 0 0 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 22px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px rgba(18, 40, 45, 0.18);
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--accent-dark);
+            border: 2px solid rgba(14, 165, 163, 0.35);
+            box-shadow: none;
+        }
+
+        .hero-stats {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 18px;
+            padding: 14px 18px;
+            border: 1px solid rgba(14, 165, 163, 0.15);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 20px;
+            font-family: "Fraunces", "Times New Roman", serif;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(14, 165, 163, 0.12);
+        }
+
+        .hero-card h3 {
+            margin: 0 0 18px;
+            font-family: "Fraunces", "Times New Roman", serif;
+        }
+
+        .hero-card-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(14, 165, 163, 0.2);
+        }
+
+        .hero-card-item:last-child {
+            border-bottom: none;
+        }
+
+        .hero-card .label {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .hero-card .value {
+            font-weight: 600;
+        }
+
+        section {
+            padding: 70px 0;
+        }
+
+        .section-head {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 36px;
+        }
+
+        .section-head h2 {
+            font-family: "Fraunces", "Times New Roman", serif;
+            font-size: clamp(26px, 3vw, 36px);
+            margin: 0;
+        }
+
+        .section-head p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 20px;
+            border: 1px solid rgba(14, 165, 163, 0.15);
+            box-shadow: 0 16px 40px rgba(18, 40, 45, 0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: var(--accent-soft);
+            color: var(--accent-dark);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
             font-size: 18px;
-            color: #333;
         }
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: #eaeaea;
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
             font-size: 14px;
+        }
+
+        .about {
+            background: rgba(244, 139, 106, 0.08);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            align-items: center;
+        }
+
+        .about-panel {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(244, 139, 106, 0.2);
+            box-shadow: var(--shadow);
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 14px;
+            color: var(--muted);
+        }
+
+        .checklist li {
+            position: relative;
+            padding-left: 26px;
+        }
+
+        .checklist li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            background: var(--accent);
+        }
+
+        .about-media {
+            background: linear-gradient(135deg, rgba(14, 165, 163, 0.2), rgba(244, 139, 106, 0.2));
+            border-radius: 24px;
+            padding: 26px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .about-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-dark);
+            font-weight: 700;
+        }
+
+        .about-highlight {
+            font-family: "Fraunces", "Times New Roman", serif;
+            font-size: 28px;
+        }
+
+        .hours {
+            background: var(--accent-soft);
+        }
+
+        .hours-grid {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(14, 165, 163, 0.15);
+            display: grid;
+            gap: 12px;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(14, 165, 163, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .hours-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .hours-row .day {
+            font-weight: 600;
+        }
+
+        .hours-row .time {
+            color: var(--muted);
+        }
+
+        .hours-note {
+            margin-top: 14px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(14, 165, 163, 0.15);
+        }
+
+        .contact-card .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+        }
+
+        .contact-card .value {
+            display: block;
+            margin-top: 6px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .contact-card.cta {
+            background: var(--accent);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .contact-card.cta .label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-card.cta .value {
+            color: white;
+        }
+
+        .contact-card.cta .btn {
+            background: white;
+            color: var(--accent-dark);
+            box-shadow: none;
+        }
+
+        .social-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .social-pill {
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(14, 165, 163, 0.12);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 32px 0 40px;
+            border-top: 1px solid rgba(14, 165, 163, 0.15);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-note {
+            color: var(--muted);
+            max-width: 360px;
+        }
+
+        .footer-bottom {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 860px) {
+            .nav {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .lang-switch {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding-bottom: 50px;
+            }
+
+            .hero-actions {
+                width: 100%;
+            }
+
+            .btn,
+            .btn.ghost {
+                width: 100%;
+            }
+
+            section {
+                padding: 56px 0;
+            }
         }
     </style>
 </head>
 <body>
+    <header id="home">
+        <div class="wrap topbar reveal" style="--delay: 0s;">
+            <div class="logo">
+                <span class="logo-mark">D</span>
+                <span data-i18n="site_name">Clinic Dentaland</span>
+            </div>
+            <nav class="nav">
+                <a href="#home" data-i18n="nav_home">Home</a>
+                <a href="#services" data-i18n="nav_services">Services</a>
+                <a href="#about" data-i18n="nav_about">Why Us</a>
+                <a href="#hours" data-i18n="nav_hours">Hours</a>
+                <a href="#contact" data-i18n="nav_contact">Contact</a>
+            </nav>
+            <div class="lang-switch" aria-label="Language selector">
+                <span class="lang-label" data-i18n="lang_label">Language</span>
+                <button class="lang-btn" type="button" data-lang="sq" aria-pressed="false">AL</button>
+                <button class="lang-btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+                <button class="lang-btn" type="button" data-lang="it" aria-pressed="false">IT</button>
+            </div>
+        </div>
 
-    <header>
-        <h1>Clinic Dentaland</h1>
-        <p>Your Smile, Our Care</p>
+        <div class="wrap hero">
+            <div class="hero-copy reveal" style="--delay: 0.05s;">
+                <span class="eyebrow" data-i18n="hero_note">Same-week appointments available</span>
+                <h1 data-i18n="hero_title">Healthy smiles, gentle care</h1>
+                <p class="lead" data-i18n="hero_subtitle">
+                    Modern dentistry in Tirana with a calm, family-friendly approach. We combine digital diagnostics with
+                    meticulous treatment planning for lasting results.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn" href="#contact" data-i18n="hero_cta_primary">Book an appointment</a>
+                    <a class="btn ghost" href="#services" data-i18n="hero_cta_secondary">View services</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value">12+</span>
+                        <span class="stat-label" data-i18n="stats_1_label">Years of care</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">4.9/5</span>
+                        <span class="stat-label" data-i18n="stats_2_label">Patient rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">2k+</span>
+                        <span class="stat-label" data-i18n="stats_3_label">Smiles restored</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-card reveal" style="--delay: 0.12s;">
+                <h3 data-i18n="hero_card_title">At-a-glance</h3>
+                <div class="hero-card-item">
+                    <span class="label" data-i18n="hero_card_line1_label">Phone</span>
+                    <a class="value" href="tel:+355691234567" data-i18n="hero_card_line1_value">+355 69 123 4567</a>
+                </div>
+                <div class="hero-card-item">
+                    <span class="label" data-i18n="hero_card_line2_label">Emergency</span>
+                    <span class="value" data-i18n="hero_card_line2_value">Call 24/7 for urgent care</span>
+                </div>
+                <div class="hero-card-item">
+                    <span class="label" data-i18n="hero_card_line3_label">Location</span>
+                    <span class="value" data-i18n="hero_card_line3_value">Rr. e Durrësit 120, Tirana</span>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main>
-        <h2>Website is working 🎉</h2>
-        <p>
-            If you can see this page at <strong>clinicdentaland.com</strong>,  
-            your domain is correctly connected.
-        </p>
-        <p>
-            This is a temporary test page.
-        </p>
+    <section id="services">
+        <div class="wrap">
+            <div class="section-head reveal" style="--delay: 0.05s;">
+                <h2 data-i18n="services_title">Our services</h2>
+                <p data-i18n="services_subtitle">Comprehensive care for every age.</p>
+            </div>
+            <div class="services-grid">
+                <div class="card reveal" style="--delay: 0.1s;">
+                    <span class="icon">01</span>
+                    <h3 data-i18n="service_1_title">Checkups & cleaning</h3>
+                    <p data-i18n="service_1_desc">Professional cleaning, gum care, and preventive exams.</p>
+                </div>
+                <div class="card reveal" style="--delay: 0.14s;">
+                    <span class="icon">02</span>
+                    <h3 data-i18n="service_2_title">Digital dentistry</h3>
+                    <p data-i18n="service_2_desc">3D scans and precise planning for predictable results.</p>
+                </div>
+                <div class="card reveal" style="--delay: 0.18s;">
+                    <span class="icon">03</span>
+                    <h3 data-i18n="service_3_title">Implants & crowns</h3>
+                    <p data-i18n="service_3_desc">Restore function and confidence with natural-looking restorations.</p>
+                </div>
+                <div class="card reveal" style="--delay: 0.22s;">
+                    <span class="icon">04</span>
+                    <h3 data-i18n="service_4_title">Orthodontics</h3>
+                    <p data-i18n="service_4_desc">Clear aligners and braces for balanced, healthy bites.</p>
+                </div>
+                <div class="card reveal" style="--delay: 0.26s;">
+                    <span class="icon">05</span>
+                    <h3 data-i18n="service_5_title">Pediatric care</h3>
+                    <p data-i18n="service_5_desc">Gentle visits designed to build lifelong dental habits.</p>
+                </div>
+                <div class="card reveal" style="--delay: 0.3s;">
+                    <span class="icon">06</span>
+                    <h3 data-i18n="service_6_title">Emergency care</h3>
+                    <p data-i18n="service_6_desc">Fast relief for pain, trauma, or broken teeth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="wrap about-grid">
+            <div class="about-panel reveal" style="--delay: 0.05s;">
+                <div class="section-head">
+                    <h2 data-i18n="about_title">Why patients choose us</h2>
+                </div>
+                <ul class="checklist">
+                    <li data-i18n="about_point_1">Experienced clinicians with international training</li>
+                    <li data-i18n="about_point_2">Strict sterilization and safety protocols</li>
+                    <li data-i18n="about_point_3">Transparent plans and upfront pricing</li>
+                    <li data-i18n="about_point_4">Comfort-first environment with modern technology</li>
+                </ul>
+            </div>
+            <div class="about-media reveal" style="--delay: 0.12s;">
+                <span class="about-tag">Dentaland</span>
+                <span class="about-highlight" data-i18n="about_highlight">Your modern dental home</span>
+                <span data-i18n="about_support">We focus on long-term oral health, not quick fixes.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="hours" class="hours">
+        <div class="wrap">
+            <div class="section-head reveal" style="--delay: 0.05s;">
+                <h2 data-i18n="hours_title">Working hours</h2>
+            </div>
+            <div class="hours-grid reveal" style="--delay: 0.12s;">
+                <div class="hours-row">
+                    <span class="day" data-i18n="hours_mon_fri">Monday - Friday</span>
+                    <span class="time" data-i18n="hours_mon_fri_time">09:00 - 19:00</span>
+                </div>
+                <div class="hours-row">
+                    <span class="day" data-i18n="hours_sat">Saturday</span>
+                    <span class="time" data-i18n="hours_sat_time">09:00 - 14:00</span>
+                </div>
+                <div class="hours-row">
+                    <span class="day" data-i18n="hours_sun">Sunday</span>
+                    <span class="time" data-i18n="hours_sun_time">Closed</span>
+                </div>
+                <div class="hours-note" data-i18n="hours_note">Emergency visits on request</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="wrap">
+            <div class="section-head reveal" style="--delay: 0.05s;">
+                <h2 data-i18n="contact_title">Contact</h2>
+                <p data-i18n="contact_subtitle">Call or message us to reserve your visit.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card reveal" style="--delay: 0.1s;">
+                    <span class="label" data-i18n="contact_phone_label">Phone</span>
+                    <a class="value" href="tel:+355691234567">+355 69 123 4567</a>
+                </div>
+                <div class="contact-card reveal" style="--delay: 0.14s;">
+                    <span class="label" data-i18n="contact_email_label">Email</span>
+                    <a class="value" href="mailto:hello@clinicdentaland.com">hello@clinicdentaland.com</a>
+                </div>
+                <div class="contact-card reveal" style="--delay: 0.18s;">
+                    <span class="label" data-i18n="contact_address_label">Address</span>
+                    <span class="value" data-i18n="hero_card_line3_value">Rr. e Durrësit 120, Tirana</span>
+                </div>
+                <div class="contact-card cta reveal" style="--delay: 0.22s;">
+                    <span class="label" data-i18n="contact_whatsapp_label">WhatsApp</span>
+                    <span class="value">+355 69 123 4567</span>
+                    <a class="btn" href="https://wa.me/355691234567" data-i18n="contact_cta">Call now</a>
+                </div>
+            </div>
+            <div class="section-head" style="margin-top: 34px;">
+                <h2 data-i18n="social_title">Follow us</h2>
+                <p data-i18n="social_subtitle">Tips, transformations, and clinic updates.</p>
+            </div>
+            <div class="social-row">
+                <a class="social-pill" href="https://instagram.com/clinicdentaland" target="_blank" rel="noreferrer">Instagram</a>
+                <a class="social-pill" href="https://facebook.com/clinicdentaland" target="_blank" rel="noreferrer">Facebook</a>
+                <a class="social-pill" href="https://tiktok.com/@clinicdentaland" target="_blank" rel="noreferrer">TikTok</a>
+            </div>
+        </div>
+    </section>
     </main>
 
     <footer>
-        © 2025 Clinic Dentaland
+        <div class="wrap footer-grid">
+            <div>
+                <div class="logo">
+                    <span class="logo-mark">D</span>
+                    <span data-i18n="site_name">Clinic Dentaland</span>
+                </div>
+                <p class="footer-note" data-i18n="footer_note">Trusted dental care for the whole family.</p>
+            </div>
+            <nav class="nav">
+                <a href="#services" data-i18n="nav_services">Services</a>
+                <a href="#about" data-i18n="nav_about">Why Us</a>
+                <a href="#hours" data-i18n="nav_hours">Hours</a>
+                <a href="#contact" data-i18n="nav_contact">Contact</a>
+            </nav>
+        </div>
+        <div class="wrap footer-bottom">© 2025 Clinic Dentaland</div>
     </footer>
 
+    <script>
+        const translations = {
+            en: {
+                site_name: "Clinic Dentaland",
+                lang_label: "Language",
+                nav_home: "Home",
+                nav_services: "Services",
+                nav_about: "Why Us",
+                nav_hours: "Hours",
+                nav_contact: "Contact",
+                hero_title: "Healthy smiles, gentle care",
+                hero_subtitle: "Modern dentistry in Tirana with a calm, family-friendly approach. We combine digital diagnostics with meticulous treatment planning for lasting results.",
+                hero_cta_primary: "Book an appointment",
+                hero_cta_secondary: "View services",
+                hero_note: "Same-week appointments available",
+                hero_card_title: "At-a-glance",
+                hero_card_line1_label: "Phone",
+                hero_card_line1_value: "+355 69 123 4567",
+                hero_card_line2_label: "Emergency",
+                hero_card_line2_value: "Call 24/7 for urgent care",
+                hero_card_line3_label: "Location",
+                hero_card_line3_value: "Rr. e Durrësit 120, Tirana",
+                stats_1_label: "Years of care",
+                stats_2_label: "Patient rating",
+                stats_3_label: "Smiles restored",
+                services_title: "Our services",
+                services_subtitle: "Comprehensive care for every age.",
+                service_1_title: "Checkups & cleaning",
+                service_1_desc: "Professional cleaning, gum care, and preventive exams.",
+                service_2_title: "Digital dentistry",
+                service_2_desc: "3D scans and precise planning for predictable results.",
+                service_3_title: "Implants & crowns",
+                service_3_desc: "Restore function and confidence with natural-looking restorations.",
+                service_4_title: "Orthodontics",
+                service_4_desc: "Clear aligners and braces for balanced, healthy bites.",
+                service_5_title: "Pediatric care",
+                service_5_desc: "Gentle visits designed to build lifelong dental habits.",
+                service_6_title: "Emergency care",
+                service_6_desc: "Fast relief for pain, trauma, or broken teeth.",
+                about_title: "Why patients choose us",
+                about_point_1: "Experienced clinicians with international training",
+                about_point_2: "Strict sterilization and safety protocols",
+                about_point_3: "Transparent plans and upfront pricing",
+                about_point_4: "Comfort-first environment with modern technology",
+                about_highlight: "Your modern dental home",
+                about_support: "We focus on long-term oral health, not quick fixes.",
+                hours_title: "Working hours",
+                hours_mon_fri: "Monday - Friday",
+                hours_mon_fri_time: "09:00 - 19:00",
+                hours_sat: "Saturday",
+                hours_sat_time: "09:00 - 14:00",
+                hours_sun: "Sunday",
+                hours_sun_time: "Closed",
+                hours_note: "Emergency visits on request",
+                contact_title: "Contact",
+                contact_subtitle: "Call or message us to reserve your visit.",
+                contact_phone_label: "Phone",
+                contact_email_label: "Email",
+                contact_address_label: "Address",
+                contact_whatsapp_label: "WhatsApp",
+                contact_cta: "Call now",
+                social_title: "Follow us",
+                social_subtitle: "Tips, transformations, and clinic updates.",
+                footer_note: "Trusted dental care for the whole family."
+            },
+            sq: {
+                site_name: "Clinic Dentaland",
+                lang_label: "Gjuha",
+                nav_home: "Kreu",
+                nav_services: "Shërbimet",
+                nav_about: "Pse ne",
+                nav_hours: "Orari",
+                nav_contact: "Kontakt",
+                hero_title: "Buzëqeshje të shëndetshme, kujdes i butë",
+                hero_subtitle: "Dentistri moderne në Tiranë me qasje të qetë, familjare. Kombinojmë diagnostikim digjital me planifikim të kujdesshëm për rezultate afatgjata.",
+                hero_cta_primary: "Rezervo një takim",
+                hero_cta_secondary: "Shiko shërbimet",
+                hero_note: "Takime të shpejta brenda javës",
+                hero_card_title: "Në një sy",
+                hero_card_line1_label: "Telefon",
+                hero_card_line1_value: "+355 69 123 4567",
+                hero_card_line2_label: "Urgjencë",
+                hero_card_line2_value: "Na telefono 24/7 për raste urgjente",
+                hero_card_line3_label: "Adresa",
+                hero_card_line3_value: "Rr. e Durrësit 120, Tiranë",
+                stats_1_label: "Vite kujdesi",
+                stats_2_label: "Vlerësim pacientësh",
+                stats_3_label: "Buzëqeshje të rikthyera",
+                services_title: "Shërbimet tona",
+                services_subtitle: "Kujdes i plotë për çdo moshë.",
+                service_1_title: "Kontrolle & pastrim",
+                service_1_desc: "Pastrime profesionale, kujdes i mishrave dhe kontrolle parandaluese.",
+                service_2_title: "Dentistri digjitale",
+                service_2_desc: "Skanime 3D dhe planifikim i saktë për rezultate të parashikueshme.",
+                service_3_title: "Implante & kurora",
+                service_3_desc: "Rikthe funksionin dhe besimin me restaurime natyrale.",
+                service_4_title: "Ortodonci",
+                service_4_desc: "Alignerë të tejdukshëm dhe braketa për kafshim të shëndetshëm.",
+                service_5_title: "Kujdes pediatrik",
+                service_5_desc: "Vizita të buta që ndërtojnë zakone të shëndetshme.",
+                service_6_title: "Urgjencë dentare",
+                service_6_desc: "Lehtësim i shpejtë për dhimbje, trauma ose dhëmb të thyer.",
+                about_title: "Pse pacientët na zgjedhin",
+                about_point_1: "Staf me eksperiencë dhe trajnim ndërkombëtar",
+                about_point_2: "Sterilizim dhe protokolle të rrepta sigurie",
+                about_point_3: "Plane të qarta dhe çmime transparente",
+                about_point_4: "Mjedis komod me teknologji moderne",
+                about_highlight: "Shtëpia juaj moderne dentare",
+                about_support: "Fokusohemi në shëndetin afatgjatë oral, jo zgjidhje të shpejta.",
+                hours_title: "Orari i punës",
+                hours_mon_fri: "E hënë - E premte",
+                hours_mon_fri_time: "09:00 - 19:00",
+                hours_sat: "E shtunë",
+                hours_sat_time: "09:00 - 14:00",
+                hours_sun: "E diel",
+                hours_sun_time: "Mbyllur",
+                hours_note: "Vizita urgjente me kërkesë",
+                contact_title: "Kontakt",
+                contact_subtitle: "Na telefononi ose na shkruani për të rezervuar.",
+                contact_phone_label: "Telefon",
+                contact_email_label: "Email",
+                contact_address_label: "Adresa",
+                contact_whatsapp_label: "WhatsApp",
+                contact_cta: "Telefono tani",
+                social_title: "Na ndiqni",
+                social_subtitle: "Këshilla, transformime dhe lajme nga klinika.",
+                footer_note: "Kujdes i besuar dentar për gjithë familjen."
+            },
+            it: {
+                site_name: "Clinic Dentaland",
+                lang_label: "Lingua",
+                nav_home: "Home",
+                nav_services: "Servizi",
+                nav_about: "Perché noi",
+                nav_hours: "Orari",
+                nav_contact: "Contatti",
+                hero_title: "Sorrisi sani, cure delicate",
+                hero_subtitle: "Odontoiatria moderna a Tirana con un approccio tranquillo e familiare. Uniamo diagnostica digitale e piani accurati per risultati duraturi.",
+                hero_cta_primary: "Prenota una visita",
+                hero_cta_secondary: "Vedi i servizi",
+                hero_note: "Disponibilità in settimana",
+                hero_card_title: "In breve",
+                hero_card_line1_label: "Telefono",
+                hero_card_line1_value: "+355 69 123 4567",
+                hero_card_line2_label: "Emergenze",
+                hero_card_line2_value: "Chiama 24/7 per urgenze",
+                hero_card_line3_label: "Indirizzo",
+                hero_card_line3_value: "Rr. e Durrësit 120, Tirana",
+                stats_1_label: "Anni di esperienza",
+                stats_2_label: "Valutazione pazienti",
+                stats_3_label: "Sorrisi ritrovati",
+                services_title: "I nostri servizi",
+                services_subtitle: "Cura completa per ogni età.",
+                service_1_title: "Controlli e igiene",
+                service_1_desc: "Pulizia professionale, cura gengivale ed esami preventivi.",
+                service_2_title: "Odontoiatria digitale",
+                service_2_desc: "Scansioni 3D e pianificazione precisa.",
+                service_3_title: "Impianti e corone",
+                service_3_desc: "Ripristina funzione e fiducia con restauri naturali.",
+                service_4_title: "Ortodonzia",
+                service_4_desc: "Aligner trasparenti e apparecchi per un morso sano.",
+                service_5_title: "Cura pediatrica",
+                service_5_desc: "Visite delicate per abitudini sane a lungo termine.",
+                service_6_title: "Urgenze dentali",
+                service_6_desc: "Sollievo rapido per dolore, traumi o denti rotti.",
+                about_title: "Perché i pazienti ci scelgono",
+                about_point_1: "Team esperto con formazione internazionale",
+                about_point_2: "Sterilizzazione rigorosa e protocolli di sicurezza",
+                about_point_3: "Piani chiari e prezzi trasparenti",
+                about_point_4: "Ambiente confortevole e tecnologia moderna",
+                about_highlight: "La tua casa dentale moderna",
+                about_support: "Ci concentriamo sulla salute orale a lungo termine, non su soluzioni rapide.",
+                hours_title: "Orari di lavoro",
+                hours_mon_fri: "Lunedì - Venerdì",
+                hours_mon_fri_time: "09:00 - 19:00",
+                hours_sat: "Sabato",
+                hours_sat_time: "09:00 - 14:00",
+                hours_sun: "Domenica",
+                hours_sun_time: "Chiuso",
+                hours_note: "Visite urgenti su richiesta",
+                contact_title: "Contatti",
+                contact_subtitle: "Chiama o scrivici per prenotare.",
+                contact_phone_label: "Telefono",
+                contact_email_label: "Email",
+                contact_address_label: "Indirizzo",
+                contact_whatsapp_label: "WhatsApp",
+                contact_cta: "Chiama ora",
+                social_title: "Seguici",
+                social_subtitle: "Consigli, trasformazioni e aggiornamenti.",
+                footer_note: "Cura dentale affidabile per tutta la famiglia."
+            }
+        };
+
+        const elements = document.querySelectorAll("[data-i18n]");
+        const buttons = document.querySelectorAll(".lang-btn");
+
+        function setLanguage(lang) {
+            const dictionary = translations[lang];
+            if (!dictionary) {
+                return;
+            }
+            elements.forEach((el) => {
+                const key = el.getAttribute("data-i18n");
+                if (dictionary[key]) {
+                    el.textContent = dictionary[key];
+                }
+            });
+            buttons.forEach((btn) => {
+                const isActive = btn.dataset.lang === lang;
+                btn.classList.toggle("active", isActive);
+                btn.setAttribute("aria-pressed", String(isActive));
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem("lang", lang);
+        }
+
+        const storedLang = localStorage.getItem("lang");
+        setLanguage(storedLang && translations[storedLang] ? storedLang : "en");
+
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                setLanguage(btn.dataset.lang);
+            });
+        });
+    </script>
 </body>
 </html>
